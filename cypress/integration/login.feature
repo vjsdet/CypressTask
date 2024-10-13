@@ -18,3 +18,11 @@ Feature: Registration & Login Module
         And User enters the password under login page
         And User click on signin button under login page
         Then Verify user logged in successfully
+
+    Scenario: Verify user is not able to login with invalid credentials
+        When User navigate to website
+        And User click on sign in header button
+        And User enters the invalid email under login page
+        And User enters the invalid password under login page
+        And User click on signin button under login page
+        Then Verify user is getting required error message while logging with invalid credentials

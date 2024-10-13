@@ -61,3 +61,15 @@ And(/^User click on signin button under login page$/, async () => {
 Then(/^Verify user logged in successfully$/, async () => {
     await loginPageObjects.verifyUserLoggedInSuccessfully(`Welcome, ${data.firstname} ${data.lastname}!`);
 });
+
+And(/^User enters the invalid email under login page$/, async () => {
+    await loginPageObjects.enterEmail("12" + email);
+});
+
+And(/^User enters the invalid password under login page$/, async () => {
+    await loginPageObjects.enterPassword(data.password + 12);
+});
+
+Then(/^Verify user is getting required error message while logging with invalid credentials$/, async () => {
+    await loginPageObjects.verifyErrorMessagePopupIsVisible("The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.");
+});

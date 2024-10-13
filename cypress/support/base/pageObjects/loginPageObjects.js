@@ -3,6 +3,7 @@ export const loginPageObjects = {
     passwordField: "#pass",
     signInButton: '[name="send"]',
     header: "[class='greet welcome']",
+    errorMessage: ".message-error> div",
 
     async enterEmail(email) {
         await cy.get(this.emailField).should('be.visible').click().type(email);
@@ -18,5 +19,9 @@ export const loginPageObjects = {
 
     async verifyUserLoggedInSuccessfully(text) {
         await cy.get(this.header).eq(0).should('be.visible').should('include.text', text);
+    },
+
+    async verifyErrorMessagePopupIsVisible(text) {
+        await cy.get(this.errorMessage).should('be.visible').should('have.text', text);
     }
 }
